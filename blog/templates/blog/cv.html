@@ -1,4 +1,27 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-    <p>WIP</p>
+    {% for cv in cvs %}
+    <div class="cv">
+        <h4>{{ cv.header|linebreaksbr }}</h4>
+        <h4>Profile</h4>
+        <p>{{ cv.profile|linebreaksbr }}</p>
+        <br>
+        <h4>Education</h4>
+        <p>{{ cv.education|linebreaksbr }}</p>
+        <br>
+        <h4>Experience</h4>
+        <p>{{ cv.experience|linebreaksbr }}</p>
+        <br>
+        <h4>Extra-Curricular Achievements</h4>
+        <p>{{ cv.extracurricular|linebreaksbr }}</p>
+        <br>
+        <h4>Skills and Interests</h4>
+        <p>{{ cv.skills|linebreaksbr }}</p>
+        <br><br><br>
+        <p>Last edited: {{ cv.edited_date }}</p>
+        {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'cv_edit' %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
+    </div>
+    {% endfor %}
 {% endblock %}

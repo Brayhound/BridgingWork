@@ -16,3 +16,20 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class CV(models.Model):
+    header = models.TextField()
+    profile = models.TextField()
+    education = models.TextField()
+    experience = models.TextField()
+    extracurricular = models.TextField()
+    skills = models.TextField()
+    edited_date = models.DateTimeField(default=timezone.now)
+
+    def publish(self):
+        self.edited_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return self.header
